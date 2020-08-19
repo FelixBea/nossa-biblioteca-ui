@@ -1,40 +1,19 @@
 <template>
-  <div class="container">
+  <div class="container-view">
     <Header/>
     <main>
-      <v-tabs v-model="tab" align-with-title>
-        <v-tab>
+      <v-tabs v-model="tab" grow align-with-title>
+        <v-tab to="/livros">
           Livros
         </v-tab>
-        <v-tab>
+        <v-tab to="/autores">
           Autores
         </v-tab>
-        <v-tab>
+        <v-tab to="/editoras">
           Editoras
         </v-tab>
       </v-tabs>
-
-      <v-tabs-items v-model="tab">
-        <v-tab-item>
-          <v-card flat>
-            <v-card-text>aaaaaaa</v-card-text>
-            <router-view />
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card flat>
-            <v-card-text>aaaaadddddaa</v-card-text>
-            <router-view />
-          </v-card>
-        </v-tab-item>
-        <v-tab-item>
-          <v-card flat>
-            <v-card-text>aaagggggaaaa</v-card-text>
-            <router-view />
-          </v-card>
-        </v-tab-item>
-      </v-tabs-items>
-
+      <router-view />
     </main>
     <Footer/>
   </div>
@@ -56,16 +35,20 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.container-view {
   width: 100vw;
   height: 100vh;
   background-color: #EEE;
+  display: flex;
+  flex-flow: column nowrap;
+  justify: stretch;
 }
 
 main {
   width: 100%;
   position: relative;
   box-sizing: border-box;
+  flex: 1 1 auto;
 }
 
 </style>
