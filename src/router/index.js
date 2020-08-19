@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Lista from '../components/UI/Lista'
+import AutoresLista from '../components/Autores/AutoresLista'
 
 Vue.use(Router)
 
@@ -9,21 +9,21 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      redirect: '/livros'
+      redirect: '/autores'
     },
     {
-      path: '/livros',
-      name: 'livros',
-      component: Lista
-    }
+      path: '/autores',
+      name: 'autores',
+      component: AutoresLista
+    },
     // {
-    //   path: '/autores',
-    //   name: 'autores',
-    //   component: Autores,
+    //   path: '/livros',
+    //   name: 'livros',
+    //   component: LivrosLista,
     //   children: [
     //     {
     //       path: '/:id',
-    //       component: AutoresDetalhes
+    //       component: LivrosDetalhes
     //     }
     //   ]
     // }

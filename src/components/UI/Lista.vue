@@ -1,10 +1,9 @@
 <template>
   <v-container fluid>
       <v-list-item-group v-model="selected" color="purple">
-        <v-list-item two-line v-for="item in items" :key="item">
+        <v-list-item two-line v-for="item in itens" :key="item.id" @click="showItem(item.id)">
           <v-list-item-content>
-            <v-list-item-title>{{item.title}}</v-list-item-title>
-            {{item.subtitle}}
+            <v-list-item-title>{{item.name || item.title}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
@@ -14,24 +13,16 @@
 <script>
 export default {
   name: 'Lista',
+  props: ['itens'],
   data () {
     return {
       selected: null,
-      item: null,
-      items: [
-        {
-          title: 'Ali Connors',
-          subtitle: "I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
-        },
-        {
-          title: 'me, Scrott, Jennifer',
-          subtitle: "Wish I could come, but I'm out of town this weekend."
-        },
-        {
-          title: 'Sandra Adams',
-          subtitle: 'Do you have Paris recommendations? Have you ever been?'
-        }
-      ]
+      item: null
+    }
+  },
+  methods: {
+    showItem(id) {
+      this.$router.push(`${this.$route.path}/${id}`);
     }
   }
 }
