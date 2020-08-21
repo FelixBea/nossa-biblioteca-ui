@@ -1,22 +1,24 @@
 <template>
-  <div class="container-view">
-    <Header/>
-    <main>
-      <v-tabs v-model="tab" grow align-with-title>
-        <v-tab to="/livros">
-          Livros
-        </v-tab>
-        <v-tab to="/autores">
-          Autores
-        </v-tab>
-        <v-tab to="/editoras">
-          Editoras
-        </v-tab>
-      </v-tabs>
-      <router-view />
-    </main>
-    <Footer/>
-  </div>
+  <v-app>
+    <div class="container-view">
+      <Header/>
+      <main>
+        <v-tabs v-model="tab" grow align-with-title>
+          <v-tab to="/livros">
+            Livros
+          </v-tab>
+          <v-tab to="/autores">
+            Autores
+          </v-tab>
+          <v-tab to="/editoras">
+            Editoras
+          </v-tab>
+        </v-tabs>
+        <router-view />
+      </main>
+      <Footer/>
+    </div>
+  </v-app>
 </template>
 
 <script>

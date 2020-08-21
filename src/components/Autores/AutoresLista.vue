@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     async loadAutores() {
-      const autores = await fetch("http://localhost:8000/autores");
+      const autores = await fetch("http://localhost:8000/api_v1/autores");
       this.autores = await autores.json();
     }
   },
