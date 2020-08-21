@@ -1,6 +1,5 @@
 <template>
-  <Lista :itens="livros" @showItem="showForm.show = true">
-    <LivrosForm acao="Criar" :show="showForm"/>
+  <Lista :itens="livros" @showItem="showLivro">
   </Lista>
 </template>
 
@@ -17,14 +16,16 @@ export default {
         {id: 1, name: 'Um livro'},
         {id: 2, name: 'Outro livro'},
         {id: 3, name: 'Outro livro ainda'}
-      ],
-      showForm: {show: false}
+      ]
     }
   },
   methods: {
     async loadLivros() {
       const livros = await fetch("http://localhost:8000/api_v1/livros");
       this.livros = await livros.json();
+    },
+    showLivro() {
+      return true
     }
   },
   async created() {

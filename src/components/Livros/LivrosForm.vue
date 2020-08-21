@@ -30,7 +30,7 @@
         <v-autocomplete
           :items="autores"
           item-value="id"
-          item-text="nome"
+          item-text="name"
           label="Autor"
           v-model="livro.autor"
           :rules="rules.autor"
@@ -55,17 +55,48 @@ export default {
         autor: null
       },
       autores: [],
+      successAlert: false,
       rules: {
-        titulo: [],
-        ano: [],
-        autor: [],
+        titulo: [v => !!v || "Preencha o título"],
+        ano: [
+          v => Number.isInteger(Number(v)) || "Preencha com um ano válido",
+          v => !!v || "Preencha o ano de publicação"
+        ],
+        autor: [v => !!v || "Preencha o autor"],
       }
     }
   },
   methods: {
-    salvarLivro() {
-      consolr.log('livro salvo');
+    async salvarLivro() {
+      try {
+        await fetch("http://localhost:8000/api_v1/livros", {
+          method: 'post',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            title: this.livro.titulo,
+            year: this.livro.ano,
+            author: this.livro.autor
+          })
+        });
+        this.$emit("success");
+      } catch (e) {
+        console.error(e);
+      }
+    },
+
+    async carregarAutores() {
+      try {
+        const autores = await fetch("http://localhost:8000/api_v1/autores");
+        this.autores = await autores.json();
+      } catch (e) {
+        console.error(e);
+      }
     }
+  },
+  async created() {
+    this.carregarAutores();
   }
 }
 </script>
